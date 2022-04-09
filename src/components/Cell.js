@@ -9,7 +9,7 @@ const Cell = ({ value }) => {
 
   return (
     <button
-      className={`w-6 h-6 ${click ? 'bg-yellow-300' : 'bg-gray-50'}`}
+      className={`aspect-square ${click ? 'bg-yellow-300' : 'bg-gray-50'}`}
       onClick={handleClick}
       type='button'
     >
