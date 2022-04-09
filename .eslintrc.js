@@ -20,6 +20,7 @@ module.exports = {
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'no-param-reassign': ['error', { props: false }],
     'jsx-quotes': 0,
   },
 }

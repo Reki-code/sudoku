@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Box from './Box'
 
 const Grid = ({ className }) => {
-  const clue = useSelector((store) => store.clue)
+  const clue = useSelector((store) => store.clue.puzzle)
 
   return (
     <div
