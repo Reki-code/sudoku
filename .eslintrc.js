@@ -5,7 +5,7 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'airbnb'
+    'airbnb',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -16,6 +16,10 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    semi: 'never',
+    semi: 0,
+    'react/jsx-filename-extension': 0,
+    'react/prop-types': 0,
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'jsx-quotes': 0,
   },
 }

@@ -10,9 +10,10 @@ const Boxes = () => {
                     grid-rows-3
                     gap-px
                     bg-gray-200
-                    '>
+                    '
+    >
       {boxes.map((box) => (
-        <Cell value={box} key={box}></Cell>
+        <Cell value={box} key={box} />
       ))}
     </div>
   )

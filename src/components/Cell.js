@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 const Cell = ({ value }) => {
   const [click, setClick] = useState(false)
@@ -9,11 +8,13 @@ const Cell = ({ value }) => {
   }
 
   return (
-    <div
+    <button
       className={`w-6 h-6 ${click ? 'bg-yellow-300' : 'bg-gray-50'}`}
-      onClick={handleClick}>
+      onClick={handleClick}
+      type='button'
+    >
       {value}
-    </div>
+    </button>
   )
 }
 
