@@ -5,12 +5,10 @@ import { configureStore } from '@reduxjs/toolkit'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import gridReducer from './reducers/gridReducer'
 import clueReducer from './reducers/clueReducer'
 
 const store = configureStore({
   reducer: {
-    grid: gridReducer,
     clue: clueReducer,
   },
 })
