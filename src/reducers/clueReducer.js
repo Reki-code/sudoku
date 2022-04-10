@@ -23,6 +23,14 @@ const clearColor = (puzzle) => {
   }
 }
 
+const validate = (puzzle, b, c) => {
+  if (puzzle[b][c].value !== puzzle[b][c].solution) {
+    puzzle[b][c].color = 'error'
+  } else {
+    puzzle[b][c].color = 'blank'
+  }
+}
+
 const clueSlice = createSlice({
   name: 'clue',
   initialState,
@@ -58,6 +66,7 @@ const clueSlice = createSlice({
         const { boxIdx, cellIdx } = state.curCell
         if (!state.puzzle[boxIdx][cellIdx].given) {
           state.puzzle[boxIdx][cellIdx].value = action.payload.value
+          validate(state.puzzle, boxIdx, cellIdx)
         }
       }
     },

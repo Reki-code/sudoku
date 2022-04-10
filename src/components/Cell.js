@@ -17,6 +17,8 @@ const Cell = ({ boxIdx, cellIdx }) => {
     backgroundColor = 'bg-slate-50'
   } else if (cell.color === 'active') {
     backgroundColor = 'bg-yellow-300'
+  } else if (cell.color === 'error') {
+    backgroundColor = 'bg-red-400'
   }
 
   return (
