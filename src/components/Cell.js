@@ -10,9 +10,18 @@ const Cell = ({ boxIdx, cellIdx }) => {
     dispatch(activeCell({ boxIdx, cellIdx }))
   }
 
+  let backgroundColor = 'bg-yellow-300'
+  if (cell.color === 'given') {
+    backgroundColor = 'bg-slate-100'
+  } else if (cell.color === 'blank') {
+    backgroundColor = 'bg-slate-50'
+  } else if (cell.color === 'active') {
+    backgroundColor = 'bg-yellow-300'
+  }
+
   return (
     <button
-      className={`aspect-square ${cell.color !== 'blank' ? 'bg-yellow-300' : 'bg-gray-50'}`}
+      className={`aspect-square ${backgroundColor}`}
       onClick={handleClick}
       type='button'
     >

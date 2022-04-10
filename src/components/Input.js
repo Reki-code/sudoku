@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
-import { newGame } from '../reducers/clueReducer'
+import { newGame, enter } from '../reducers/clueReducer'
 
 const Input = ({ className }) => {
   const input = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-  const [cur, setCur] = useState(0)
   const dispatch = useDispatch()
 
   const handleNewGame = () => {
@@ -12,12 +11,11 @@ const Input = ({ className }) => {
   }
 
   const handleClick = ({ target }) => {
-    setCur(target.textContent)
+    dispatch(enter({ value: target.textContent }))
   }
   return (
     <div className={className}>
       <div className='flex place-content-around items-start'>
-        <div className='w-1'>{cur}</div>
         <button
           type='button'
           onClick={handleNewGame}
