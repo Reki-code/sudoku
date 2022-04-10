@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 
-const Cell = ({ value }) => {
+const Cell = ({ value, onClick }) => {
   const [click, setClick] = useState(false)
 
   const handleClick = () => {
     setClick(true)
+    onClick()
   }
 
   return (
