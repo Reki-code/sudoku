@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { activeCell } from '../reducers/clueReducer'
 
-const Cell = ({ value, onClick }) => {
-  const [click, setClick] = useState(false)
+const Cell = ({ boxIdx, cellIdx }) => {
+  const cell = useSelector((state) => state.clue.puzzle[boxIdx][cellIdx])
+  const dispatch = useDispatch()
 
   const handleClick = () => {
-    setClick(true)
-    onClick()
+    dispatch(activeCell({ boxIdx, cellIdx }))
   }
 
   return (
     <button
-      className={`aspect-square ${click ? 'bg-yellow-300' : 'bg-gray-50'}`}
+      className={`aspect-square ${cell.color !== 'blank' ? 'bg-yellow-300' : 'bg-gray-50'}`}
       onClick={handleClick}
       type='button'
     >
-      {value}
+      {cell.value}
     </button>
   )
 }

@@ -2,19 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getSudoku } from 'sudoku-gen'
 
 const initialState = {
-  givens: null,
-  puzzle: new Array(9).fill(new Array(9).fill(' ')),
-  solution: new Array(9).fill(new Array(9).fill(' ')),
-  curCell: { x: -1, y: -1 },
-}
-
-const copyStringToArray = (str, array) => {
-  str.split('')
-    .map((ch) => (ch === '-' ? ' ' : ch))
-    .forEach((ch, idx) => {
-      const boxIdx = Math.floor(idx / 9)
-      array[boxIdx][idx % 9] = ch
-    })
+  puzzle: new Array(9).fill(new Array(9).fill({
+    given: false,
+    value: ' ',
+    color: 'blank',
+    solution: ' ',
+  })),
+  curCell: { boxIdx: -1, cellIdx: -1 },
 }
 
 const clueSlice = createSlice({
@@ -23,13 +17,26 @@ const clueSlice = createSlice({
   reducers: {
     newGame(state) {
       const sudoku = getSudoku('easy')
-      copyStringToArray(sudoku.puzzle, state.puzzle)
-      state.givens = state.puzzle.map((arr) => arr.slice())
-      copyStringToArray(sudoku.solution, state.solution)
+      sudoku.puzzle.split('')
+        .forEach((value, idx) => {
+          const boxIdx = Math.floor(idx / 9)
+          if (value !== '-') {
+            state.puzzle[boxIdx][idx % 9].given = true
+            state.puzzle[boxIdx][idx % 9].value = value
+          } else {
+            state.puzzle[boxIdx][idx % 9].given = false
+            state.puzzle[boxIdx][idx % 9].value = ' '
+          }
+          state.puzzle[boxIdx][idx % 9].color = 'blank'
+          state.puzzle[boxIdx][idx % 9].solution = sudoku.solution[idx]
+        })
     },
     activeCell(state, action) {
-      state.curCell.x = 4
-      state.curCell.y = action.y
+      state.curCell = action.payload
+      const { boxIdx, cellIdx } = action.payload
+      if (!state.puzzle[boxIdx][cellIdx].given) {
+        state.puzzle[boxIdx][cellIdx].color = 'active'
+      }
     },
   },
 })
